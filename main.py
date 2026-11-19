@@ -11,13 +11,13 @@ def U_(x):
  if len(x)==5:m|=("nbrq".index(x[4])+2)<<14
  return m
 while 1:
- g=p("/game",{})
- if g["status"]=="done":break
- while g["status"]=="your_move":
-  F(g["fen"])
-  ms=[(x,U_(x)) for x in g["legal_moves"]]
+ gm=p("/game",{})
+ if gm["status"]=="done":break
+ while gm["status"]=="your_move":
+  F(gm["fen"])
+  ms=[(x,U_(x)) for x in gm["legal_moves"]]
   if len(ms)==1:mv=ms[0][0]
   else:
    _,bm=Rt([m for _,m in ms])
    mv=[x for x,m in ms if m==bm][0]
-  g=p("/move",{"game":g["game"],"move":mv})
+  gm=p("/move",{"game":gm["game"],"move":mv})
